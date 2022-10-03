@@ -14,4 +14,4 @@ jobs:
         with:
           repository: Carlos-Muniz/dotfiles
       - name: Tree the directory
-        run: tree .
+        run: ls ./*/*
