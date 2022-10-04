@@ -1,7 +1,12 @@
 name: Copy .github/workflows to vimrc-setup
 
+# generates the english translation files
+# git clones the openedx-translations
+# finds and copies the relevant translation files from the current repo to openedx-translations
+# git adds, commits, & pushes them to openedx-translations
+
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 jobs:
   myjob:
