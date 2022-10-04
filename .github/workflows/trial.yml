@@ -24,6 +24,8 @@ jobs:
       - name: commit files to vimrc-setup repo
         run: |
             cd ./target
+            git config --global user.email "cmuniz.dev@gmail.com"
+            git config --global user.name "Carlos Muniz"
             git add .
             git diff-index --quiet HEAD || git commit -m "Automatic publish via workflow"
             git push vimrc-setup main
