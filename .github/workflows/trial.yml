@@ -19,7 +19,7 @@ jobs:
           path: target
       
       - name: Copy .github/workflows/*.yml to vimrc-setup
-        run: find ./source -iname '*.yml' -exec cp --parents {} ./target/vimrc-setup/ \;
+        run: find ./source -iname '*.yml' -exec cp -v --parents {} ./target/ \;
       
       - name: commit files to vimrc-setup repo
         run: |
