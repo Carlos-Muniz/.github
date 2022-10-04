@@ -1,4 +1,4 @@
-name: Copy specific files from one repo to another
+name: Copy .github/workflows to vimrc-setup
 
 on:
   workflow_dispatch:
@@ -9,9 +9,20 @@ jobs:
     steps:
       - name: checkout this repo
         uses: "actions/checkout@v3"
+      
       - name: checkout another repo
         uses: "actions/checkout@v3"
         with:
-          repository: Carlos-Muniz/dotfiles
-      - name: Tree the directory
-        run: ls ./*/*
+          repository: Carlos-Muniz/vimrc-setup
+      
+      - name: Copy .github/workflows/*.yml to vimrc-setup
+        run: find .github -iname '*.yml' -exec cp --parents {} vimrc-setup/ \;
+      
+      - name: commit files to vimrc-setup repo
+        run: |
+            cd vimrc-setup
+            git add .
+            git diff-index --quiet HEAD || git commit -m "Automatic publish via workflow"
+            git push vimrc-setup main
+
+        
