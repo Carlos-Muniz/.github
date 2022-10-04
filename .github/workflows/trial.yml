@@ -7,22 +7,23 @@ jobs:
   myjob:
     runs-on: ubuntu-latest 
     steps:
-      - name: checkout this repo
+      - name: checkout source repo
         uses: "actions/checkout@v3"
+        with:
+          path: source
       
       - name: checkout another repo
         uses: "actions/checkout@v3"
         with:
           repository: Carlos-Muniz/vimrc-setup
+          path: target
       
       - name: Copy .github/workflows/*.yml to vimrc-setup
-        run: find .github -iname '*.yml' -exec cp --parents {} vimrc-setup/ \;
+        run: find ./source -iname '*.yml' -exec cp --parents {} ./target/vimrc-setup/ \;
       
       - name: commit files to vimrc-setup repo
         run: |
-            cd vimrc-setup
+            cd ./target/vimrc-setup
             git add .
             git diff-index --quiet HEAD || git commit -m "Automatic publish via workflow"
             git push vimrc-setup main
-
-        
